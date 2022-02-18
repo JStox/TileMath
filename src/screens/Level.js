@@ -21,7 +21,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Level = ({ route, navigation }) => {
   const { item, difficulty } = route.params; // get the params passed in from navigation.navigate
-  console.log(item, difficulty);
+  // console.log(item, difficulty);
   const [equation, setEquation] = useState([...data[item - 1].initialEquation]);
   const [tiles, setTiles] = useState([...data[item - 1].initialTiles]);
   const [message, setMessage] = useState(" ");

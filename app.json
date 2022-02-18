@@ -4,7 +4,7 @@
     "slug": "AwesomeProjectNPM",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/1024.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -13,12 +13,11 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.cjstox.AwesomeProjectNPM"
+      "bundleIdentifier": "com.cjstox.TileMath",
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {

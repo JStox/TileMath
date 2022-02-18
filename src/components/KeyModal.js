@@ -13,18 +13,18 @@ import { useGlobalContext } from "../context/GameContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const KeyModal = ({ setShowKeys, item, usedKey }) => {
+  console.log(setShowKeys, item, usedKey);
   const { height } = Dimensions.get("window");
   const { numKeys, setNumKeys, keyLevels, setKeyLevels } = useGlobalContext();
 
   const moveAnim = useRef(new Animated.Value(-height / 2 - 200)).current;
   const dis = usedKey || numKeys < 1;
-  console.log(dis);
 
   useEffect(() => {
     Animated.timing(moveAnim, {
       toValue: 0,
       duration: 800,
-      useNativeDriver: true,
+      useNativeDriver: true, // this could be the issue
       easing: Easing.bezier(0.68, -0.6, 0.32, 1.6),
     }).start();
   }, [moveAnim]);
@@ -63,7 +63,7 @@ const KeyModal = ({ setShowKeys, item, usedKey }) => {
             Use a key to get a hint.
           </Text>
           <Text style={{ fontSize: 18, fontFamily: "Futura" }}>
-            You currently have {numKeys} key{numKeys !== 1 && s}.
+            You currently have {numKeys} key{numKeys !== 1 && "s"}.
           </Text>
         </View>
         <View style={styles.modalButtonContainer}>
