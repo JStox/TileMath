@@ -221,24 +221,28 @@ const Level = ({ route, navigation }) => {
 
   const evaluateCurrentEquation = () => {
     const equationList = [];
+    let full = true;
     equation.forEach((item) => {
       if (item.value !== "") {
         equationList.push(item.value);
       } else {
-        return;
+        full = false;
       }
     });
     try {
       const evaluatedSolution = eval(equationList.join("").toString());
       setMessage(evaluatedSolution.toString());
-      if (evaluatedSolution === solution) {
-        setMessageColor("hsl(150, 40%, 80%)");
+      if (evaluatedSolution === solution && full) {
+        setShowModal(true);
+        setMessageColor("hsl(150, 50%, 50%)");
+      } else if (evaluatedSolution === solution) {
+        setMessageColor("hsl(150, 50%, 50%)");
       } else {
-        setMessageColor("hsl(0, 30%, 50%)");
+        setMessageColor("hsl(0, 50%, 60%)");
       }
     } catch {
       setMessage("Undefined");
-      setMessageColor("hsl(0, 30%, 50%)");
+      setMessageColor("hsl(0, 50%, 60%)");
     }
   };
 
@@ -472,7 +476,8 @@ const styles = StyleSheet.create({
     display: "none",
   },
   messageStyle: {
-    fontSize: 24,
+    fontSize: 30,
+    fontWeight: "bold",
   },
 });
 

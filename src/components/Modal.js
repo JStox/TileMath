@@ -22,6 +22,13 @@ const Modal = ({ setShowModal, navigation, item, difficulty }) => {
     insane: 300,
   };
 
+  const difficultyMapSub = {
+    easy: 0,
+    medium: 40,
+    hard: 100,
+    insane: 200,
+  };
+
   useEffect(() => {
     Animated.timing(moveAnim, {
       toValue: 0,
@@ -38,7 +45,9 @@ const Modal = ({ setShowModal, navigation, item, difficulty }) => {
       >
         <View style={styles.modalTextContainer}>
           <Text style={styles.titleText}>Congratulations!</Text>
-          <Text style={styles.subTitle}>You solved level {item}</Text>
+          <Text style={styles.subTitle}>
+            You solved {difficulty} level {item - difficultyMapSub[difficulty]}
+          </Text>
         </View>
         <View style={styles.modalButtonContainer}>
           <TouchableOpacity

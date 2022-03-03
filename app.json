@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "AwesomeProjectNPM",
-    "slug": "AwesomeProjectNPM",
+    "name": "TileMath",
+    "slug": "TileMath",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/1024.png",
+    "icon": "./assets/appstore.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,7 +17,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.cjstox.TileMath",
-      "buildNumber": "2"
+      "buildNumber": "3"
     },
     "android": {
       "adaptiveIcon": {

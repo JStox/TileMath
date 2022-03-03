@@ -29,6 +29,7 @@ const Header = ({
           <TouchableOpacity
             onPress={() => navigation.pop()}
             style={styles.hasMargin}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Icon
               type="font-awesome-5"
