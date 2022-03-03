@@ -114,6 +114,7 @@ const LevelMenu = ({ navigation, route }) => {
           <TouchableOpacity
             disabled={pageIndex === 0}
             onPress={() => setPageIndex(pageIndex - 1)}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Icon
               name="arrow-left"
@@ -126,6 +127,7 @@ const LevelMenu = ({ navigation, route }) => {
           <TouchableOpacity
             disabled={pageIndex === difficultyPageCountMap[difficulty] - 1}
             onPress={() => setPageIndex(pageIndex + 1)}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
             <Icon
               name="arrow-right"
