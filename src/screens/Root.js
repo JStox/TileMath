@@ -22,8 +22,8 @@ const Root = ({ navigation }) => {
     <LinearGradient
       colors={
         dark
-          ? ["hsl(210, 30%, 20%)", "hsl(210, 30%, 20%)"]
-          : ["hsl(210, 30%, 50%)", "hsl(210, 30%, 50%)"]
+          ? ["hsl(210, 30%, 20%)", "hsl(210, 30%, 30%)"]
+          : ["hsl(210, 30%, 50%)", "hsl(210, 30%, 60%)"]
       }
       style={styles.background}
     >

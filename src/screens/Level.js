@@ -170,6 +170,7 @@ const Level = ({ route, navigation }) => {
   useEffect(() => {
     if (keyLevels.length > 0) {
       if (keyLevels.split(",").indexOf(item.toString()) > -1) {
+        resetLevel(); // get tiles back and set equation to initial state
         setEquation([...data[item - 1].keyEquation]);
         setMessage("You used a key!");
         setMessageColor(dark ? "hsl(180, 20%, 80%)" : "hsl(180, 20%, 20%)");
@@ -212,6 +213,17 @@ const Level = ({ route, navigation }) => {
       setMessageColor("hsl(0, 30%, 50%)");
     }
   }, [equation]);
+
+  const resetLevel = () => {
+    if (usedKey.current) {
+      setEquation([...data[item - 1].keyEquation]);
+      setTiles([...data[item - 1].initialTiles]);
+    } else {
+      setEquation([...data[item - 1].initialEquation]);
+      setTiles([...data[item - 1].initialTiles]);
+    }
+    setMessage(" ");
+  };
 
   const shuffleTiles = () => {
     const draggables = tiles.filter(({ type }) => type === "tile");
@@ -337,13 +349,7 @@ const Level = ({ route, navigation }) => {
               </View>
             </View>
             <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                onPress={() => {
-                  setEquation([...data[item - 1].initialEquation]);
-                  setTiles([...data[item - 1].initialTiles]);
-                  setMessage(" ");
-                }}
-              >
+              <TouchableOpacity onPress={resetLevel}>
                 <Icon
                   type="font-awesome-5"
                   name="undo"
@@ -413,9 +419,10 @@ const styles = StyleSheet.create({
     flex: 5,
     alignItems: "center",
     justifyContent: "flex-end",
+    marginBottom: 40,
   },
   equationContainer: {
-    flex: 4,
+    flex: 2,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -424,6 +431,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
+    margin: 20,
   },
   holdingTileContainer: {
     flex: 2,

@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     flex: 10,
+    minHeight: 300,
+    maxHeight: 450,
   },
   box: {
     height: 65,

@@ -88,8 +88,8 @@ const LevelMenu = ({ navigation, route }) => {
     <LinearGradient
       colors={
         dark
-          ? ["hsl(210, 30%, 20%)", "hsl(210, 30%, 20%)"]
-          : ["hsl(210, 30%, 50%)", "hsl(210, 30%, 50%)"]
+          ? ["hsl(210, 30%, 20%)", "hsl(210, 30%, 30%)"]
+          : ["hsl(210, 30%, 50%)", "hsl(210, 30%, 60%)"]
       }
       style={styles.background}
     >
@@ -123,7 +123,9 @@ const LevelMenu = ({ navigation, route }) => {
               style={pageIndex === 0 && styles.disabled}
             />
           </TouchableOpacity>
-          <Text style={styles.levelText}>Levels</Text>
+          <Text style={styles.levelText}>
+            Levels {pageIndex + 1}/{difficultyPageCountMap[difficulty]}
+          </Text>
           <TouchableOpacity
             disabled={pageIndex === difficultyPageCountMap[difficulty] - 1}
             onPress={() => setPageIndex(pageIndex + 1)}

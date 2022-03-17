@@ -95,7 +95,7 @@ const Help = ({ setShowHelp }) => {
                 flexShrink: 1,
               }}
             >
-              Shuffle the tiles that are in the expression.
+              Shuffle the tiles that are not in the expression.
             </Text>
           </View>
           <View style={styles.helpTileView}>

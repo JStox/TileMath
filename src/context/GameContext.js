@@ -8,7 +8,7 @@ const GameProvider = ({ children }) => {
   const [mediumCurrentLevel, setMediumCurrentLevel] = useState(41);
   const [hardCurrentLevel, setHardCurrentLevel] = useState(101);
   const [insaneCurrentLevel, setInsaneCurrentLevel] = useState(201);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
   const [numKeys, setNumKeys] = useState(3);
   const [keyLevels, setKeyLevels] = useState("");
 
