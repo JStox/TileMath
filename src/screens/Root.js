@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Help from "../components/Help";
 import Settings from "../components/Settings";
@@ -9,9 +15,11 @@ import Symbol from "../components/Symbol";
 import HelpTile from "../components/HelpTile";
 
 const Root = ({ navigation }) => {
+  const { width, height } = Dimensions.get("window");
+  const small = width < 350;
   const [showHelp, setShowHelp] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const { currentLevel, setCurrentLevel, dark } = useGlobalContext();
+  const { dark } = useGlobalContext();
   const difficultyColorMap = {
     easy: ["hsl(150, 50%, 50%)", "hsl(150, 50%, 30%)"],
     medium: ["hsl(50, 60%, 70%)", "hsl(50, 60%, 40%)"],
@@ -58,9 +66,11 @@ const Root = ({ navigation }) => {
         >
           <LinearGradient
             colors={difficultyColorMap.easy}
-            style={styles.select}
+            style={small ? styles.smallSelect : styles.select}
           >
-            <Text style={styles.levelText}>Easy</Text>
+            <Text style={small ? styles.smallLevelText : styles.levelText}>
+              Easy
+            </Text>
           </LinearGradient>
         </TouchableOpacity>
         <TouchableOpacity
@@ -70,9 +80,11 @@ const Root = ({ navigation }) => {
         >
           <LinearGradient
             colors={difficultyColorMap.medium}
-            style={styles.select}
+            style={small ? styles.smallSelect : styles.select}
           >
-            <Text style={styles.levelText}>Medium</Text>
+            <Text style={small ? styles.smallLevelText : styles.levelText}>
+              Medium
+            </Text>
           </LinearGradient>
         </TouchableOpacity>
         <TouchableOpacity
@@ -82,9 +94,11 @@ const Root = ({ navigation }) => {
         >
           <LinearGradient
             colors={difficultyColorMap.hard}
-            style={styles.select}
+            style={small ? styles.smallSelect : styles.select}
           >
-            <Text style={styles.levelText}>Hard</Text>
+            <Text style={small ? styles.smallLevelText : styles.levelText}>
+              Hard
+            </Text>
           </LinearGradient>
         </TouchableOpacity>
         <TouchableOpacity
@@ -94,9 +108,11 @@ const Root = ({ navigation }) => {
         >
           <LinearGradient
             colors={difficultyColorMap.insane}
-            style={styles.select}
+            style={small ? styles.smallSelect : styles.select}
           >
-            <Text style={styles.levelText}>Insane</Text>
+            <Text style={small ? styles.smallLevelText : styles.levelText}>
+              Insane
+            </Text>
           </LinearGradient>
         </TouchableOpacity>
       </View>
@@ -119,6 +135,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  smallSelect: {
+    borderWidth: 1,
+    borderRadius: 5,
+    margin: 8,
+    padding: 15,
+    width: 250,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   header: {
     justifyContent: "space-between",
     flexDirection: "row",
@@ -133,6 +158,12 @@ const styles = StyleSheet.create({
   levelText: {
     color: "hsl(180, 00%, 90%)",
     fontSize: 20,
+    fontWeight: "bold",
+    fontFamily: "Futura",
+  },
+  smallLevelText: {
+    color: "hsl(180, 00%, 90%)",
+    fontSize: 16,
     fontWeight: "bold",
     fontFamily: "Futura",
   },

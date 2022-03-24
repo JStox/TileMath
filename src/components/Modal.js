@@ -11,7 +11,7 @@ import {
 import { Icon } from "react-native-elements";
 
 const Modal = ({ setShowModal, navigation, item, difficulty }) => {
-  const { height } = Dimensions.get("window");
+  const { height, width } = Dimensions.get("window");
 
   const moveAnim = useRef(new Animated.Value(height / 2 + 200)).current;
 
@@ -41,10 +41,16 @@ const Modal = ({ setShowModal, navigation, item, difficulty }) => {
   return (
     <View style={styles.modalContainer} onPress={() => setShowModal(false)}>
       <Animated.View
-        style={[styles.modal, { transform: [{ translateY: moveAnim }] }]}
+        style={[
+          styles.modal,
+          { transform: [{ translateY: moveAnim }] },
+          width < 350 && { width: 280 },
+        ]}
       >
         <View style={styles.modalTextContainer}>
-          <Text style={styles.titleText}>Congratulations!</Text>
+          <Text style={[styles.titleText, width < 400 && { fontSize: 26 }]}>
+            Congratulations!
+          </Text>
           <Text style={styles.subTitle}>
             You solved {difficulty} level {item - difficultyMapSub[difficulty]}
           </Text>

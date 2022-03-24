@@ -34,7 +34,7 @@ const LevelMenu = ({ navigation, route }) => {
     dark,
   } = useGlobalContext();
 
-  const { width } = Dimensions.get("window");
+  const { width, height } = Dimensions.get("window");
 
   const difficultyColorMap = {
     easy: ["hsl(150, 50%, 50%)", "hsl(150, 50%, 30%)"],
@@ -104,12 +104,15 @@ const LevelMenu = ({ navigation, route }) => {
       />
       <View style={{ flex: 20, minWidth: width }}>
         <View
-          style={{
-            justifyContent: "space-around",
-            flexDirection: "row",
-            marginTop: 30,
-            flex: 1,
-          }}
+          style={[
+            {
+              justifyContent: "space-around",
+              flexDirection: "row",
+              marginTop: 30,
+              flex: 1,
+            },
+            height < 1000 && { flex: 2 },
+          ]}
         >
           <TouchableOpacity
             disabled={pageIndex === 0}

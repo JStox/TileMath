@@ -59,6 +59,10 @@ const Help = ({ setShowHelp }) => {
               Subtraction
             </Text>
           </View>
+          <Text style={{ marginLeft: 10, fontFamily: "Futura", fontSize: 16 }}>
+            Note: Multiplication and Division will execute left to right before
+            any Addition or Subtraction.
+          </Text>
           <Text style={[styles.helpTitle, { marginTop: 10, marginBottom: 5 }]}>
             Buttons at the Bottom:
           </Text>
@@ -153,6 +157,62 @@ const Help = ({ setShowHelp }) => {
             <HelpTile value={5} />
             <Text style={{ fontSize: 24, marginLeft: 10 }}>= -5</Text>
           </View>
+          <View>
+            <Text
+              style={[styles.helpTitle, { marginTop: 10, marginBottom: 5 }]}
+            >
+              Key Help:{" "}
+              <Icon
+                type="font-awesome-5"
+                name="key"
+                color="hsl(180, 20%, 30%)"
+                size={30}
+              />
+            </Text>
+            <Text style={{ fontFamily: "Futura", fontSize: 16 }}>
+              Use keys to get hints for puzzles. Using a key will the player up
+              to four free tiles. Using keys will never solve a puzzle for you
+              or remove any playable tiles, however it will offer a window into
+              a possible solution to a puzzle.
+            </Text>
+            <View
+              style={{
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "center",
+                marginBottom: 3,
+              }}
+            >
+              <HelpTile value={""} blank={true} />
+              <HelpTile value={""} blank={true} />
+              <HelpTile value={""} blank={true} />
+              <Text style={{ fontSize: 24, marginLeft: 10 }}>= 12</Text>
+            </View>
+            <Text
+              style={{ fontFamily: "Futura", fontSize: 16, marginBottom: 3 }}
+            >
+              Using a key on the above puzzle may turn it into
+            </Text>
+            <View
+              style={{
+                alignItems: "center",
+                flexDirection: "row",
+                justifyContent: "center",
+                marginBottom: 3,
+              }}
+            >
+              <HelpTile value={"3"} blank={true} />
+              <HelpTile value={"+"} blank={true} />
+              <HelpTile value={""} blank={true} />
+              <Text style={{ fontSize: 24, marginLeft: 10 }}>= 12</Text>
+            </View>
+            <Text
+              style={{ fontFamily: "Futura", fontSize: 16, marginBottom: 10 }}
+            >
+              making it easier to solve. The player will start off with 3 keys,
+              with more available as in-app purchases.
+            </Text>
+          </View>
         </ScrollView>
         <TouchableOpacity
           style={styles.helpClose}
@@ -183,7 +243,7 @@ const styles = StyleSheet.create({
   help: {
     position: "relative",
     flex: 1,
-    backgroundColor: "hsl(180, 20%, 70%)",
+    backgroundColor: "hsl(180, 10%, 80%)",
     marginTop: 40,
     marginHorizontal: 30,
     marginBottom: 40,

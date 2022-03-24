@@ -33,6 +33,7 @@ const Level = ({ route, navigation }) => {
   const usedKey = useRef(false);
 
   const { height, width } = Dimensions.get("window");
+  const small = width < 350;
   const {
     easyCurrentLevel,
     setEasyCurrentLevel,
@@ -118,14 +119,14 @@ const Level = ({ route, navigation }) => {
       <DraxView
         receptive={receptive}
         spot={spot}
-        style={[styles.box, styles.payloadNone]}
+        style={[small ? styles.smallBox : styles.box, styles.payloadNone]}
         onReceiveDragDrop={handleDrop}
         onReceiveDragEnter={() => setHover(true)}
         onReceiveDragExit={() => setHover(false)}
       >
         <LinearGradient
           colors={["hsl(180, 20%, 70%)", "hsl(180, 20%, 80%)"]}
-          style={[styles.box, hover && styles.hover]}
+          style={[small ? styles.smallBox : styles.box, hover && styles.hover]}
         >
           {value ? <Symbol sign={value} /> : children}
         </LinearGradient>
@@ -144,7 +145,7 @@ const Level = ({ route, navigation }) => {
         dragPayload={{ draggedspot: spot, draggedValue: value }}
         payload={{ spot, value }}
         draggingStyle={{ opacity: 0 }}
-        style={[styles.box, styles.containsPayload]}
+        style={[small ? styles.smallBox : styles.box, styles.containsPayload]}
         onDragStart={() => {
           console.log("Dragging");
         }}
@@ -159,7 +160,7 @@ const Level = ({ route, navigation }) => {
       >
         <LinearGradient
           colors={["hsl(180, 20%, 100%)", "hsl(180, 20%, 80%)"]}
-          style={styles.box}
+          style={small ? styles.smallBox : styles.box}
         >
           <Symbol sign={value} />
         </LinearGradient>
@@ -205,12 +206,12 @@ const Level = ({ route, navigation }) => {
         setShowModal(true);
       } else {
         setMessage(evaluatedSolution.toString());
-        setMessageColor("hsl(0, 30%, 50%)");
+        setMessageColor("hsl(0, 50%, 60%)");
       }
     } catch (e) {
       console.log(e);
       setMessage("Undefined");
-      setMessageColor("hsl(0, 30%, 50%)");
+      setMessageColor("hsl(0, 50%, 60%)");
     }
   }, [equation]);
 
@@ -322,7 +323,9 @@ const Level = ({ route, navigation }) => {
               </Text>
             </View>
             <View style={[styles.holdingTileContainer, { minWidth: width }]}>
-              <View style={styles.tileContainer}>
+              <View
+                style={small ? styles.smallTileContainer : styles.tileContainer}
+              >
                 {tiles.map(({ type, value }, index) => {
                   if (type === "droppable") {
                     return (
@@ -445,6 +448,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "wrap",
   },
+  smallTileContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    maxWidth: 250,
+    alignItems: "center",
+    flexWrap: "wrap",
+  },
   buttonContainer: {
     flex: 2,
     alignItems: "flex-start",
@@ -463,8 +473,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  smallBox: {
+    height: 38,
+    width: 38,
+    borderRadius: 5,
+    borderWidth: 1,
+    margin: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   hover: {
-    borderColor: "hsl(150, 50%, 50%)",
+    borderColor: "hsl(150, 50%, 60%)",
   },
   payloadNone: {
     backgroundColor: "hsl(180, 20%, 80%)",
