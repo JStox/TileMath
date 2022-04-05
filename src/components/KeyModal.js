@@ -53,16 +53,22 @@ const KeyModal = ({ setShowKeys, item, usedKey }) => {
         <View style={styles.modalTextContainer}>
           <Text
             style={{
-              fontSize: 24,
+              fontSize: 22,
               textAlign: "center",
               margin: 20,
               transform: [{ translateY: 15 }],
-              fontFamily: "Futura",
+              fontFamily: "JosefinSans",
             }}
           >
             Use a key to get a hint.
           </Text>
-          <Text style={{ fontSize: 18, fontFamily: "Futura" }}>
+          <Text
+            style={{
+              fontSize: 18,
+              fontFamily: "JosefinSansLight",
+              paddingTop: 10,
+            }}
+          >
             You currently have {numKeys} key{numKeys !== 1 && "s"}.
           </Text>
         </View>
@@ -82,7 +88,7 @@ const KeyModal = ({ setShowKeys, item, usedKey }) => {
               style={{
                 fontSize: 24,
                 color: "hsl(150, 20%, 86%)",
-                fontFamily: "Futura",
+                fontFamily: "JosefinSans",
               }}
             >
               Use a Key

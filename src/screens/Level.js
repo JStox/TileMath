@@ -139,13 +139,19 @@ const Level = ({ route, navigation }) => {
       console.log(payload, equation);
     };
 
+    const [hover, setHover] = useState(false);
+
     return (
       <DraxView
         receptive={true}
         dragPayload={{ draggedspot: spot, draggedValue: value }}
         payload={{ spot, value }}
         draggingStyle={{ opacity: 0 }}
-        style={[small ? styles.smallBox : styles.box, styles.containsPayload]}
+        style={[
+          small ? styles.smallBox : styles.box,
+          styles.containsPayload,
+          hover && styles.hover,
+        ]}
         onDragStart={() => {
           console.log("Dragging");
         }}
@@ -157,10 +163,17 @@ const Level = ({ route, navigation }) => {
           console.log("Not dragging, dropped");
         }}
         onReceiveDragDrop={handleDrop}
+        dragReleasedStyle={{ opacity: 0 }}
+        receivingStyle={{
+          borderWidth: 10,
+          borderColor: "hsl(150, 50%, 60%)",
+        }}
+        onMonitorDragEnter={() => setHover(true)}
+        onMonitorDragExit={() => setHover(false)}
       >
         <LinearGradient
           colors={["hsl(180, 20%, 100%)", "hsl(180, 20%, 80%)"]}
-          style={small ? styles.smallBox : styles.box}
+          style={[small ? styles.smallBox : styles.box, hover && styles.hover]}
         >
           <Symbol sign={value} />
         </LinearGradient>
@@ -180,6 +193,26 @@ const Level = ({ route, navigation }) => {
     }
   }, [showKeys]);
 
+  const validate = (eq) => {
+    const no_start = ["0", "+", "*", "/"];
+    const no_rep = ["*", "/"];
+    let prev = eq[0];
+    console.log(prev);
+    if (no_start.includes(prev)) {
+      console.log("no_start");
+      return false;
+    }
+    let passes = true;
+    eq.slice(1).forEach((item) => {
+      if (no_rep.includes(prev) && no_rep.includes(item)) {
+        console.log("fail");
+        passes = false;
+      }
+      prev = item;
+    });
+    return passes;
+  };
+
   useEffect(async () => {
     const equationList = [];
     equation.forEach((item) => {
@@ -191,21 +224,28 @@ const Level = ({ route, navigation }) => {
     });
     if (equationList.length < equation.length) return;
     try {
-      const evaluatedSolution = eval(equationList.join("").toString());
-      if (evaluatedSolution === solution) {
-        if (difficultyMap[difficulty][1] === item) {
-          difficultyMap[difficulty][2](item + 1); // Then need to store value
-          console.log("set current level in var");
-          const res = await AsyncStorage.setItem(
-            difficultyMap[difficulty][0].toString(),
-            (item + 1).toString()
-          );
-          console.log(res);
-          console.log("set", difficultyMap[difficulty][0], "= ", item + 1);
+      const passes = validate(equationList);
+      console.log(passes);
+      if (passes) {
+        const evaluatedSolution = eval(equationList.join("").toString());
+        if (evaluatedSolution === solution) {
+          if (difficultyMap[difficulty][1] === item) {
+            difficultyMap[difficulty][2](item + 1); // Then need to store value
+            console.log("set current level in var");
+            const res = await AsyncStorage.setItem(
+              difficultyMap[difficulty][0].toString(),
+              (item + 1).toString()
+            );
+            console.log(res);
+            console.log("set", difficultyMap[difficulty][0], "= ", item + 1);
+          }
+          setShowModal(true);
+        } else {
+          setMessage(evaluatedSolution.toString());
+          setMessageColor("hsl(0, 50%, 60%)");
         }
-        setShowModal(true);
       } else {
-        setMessage(evaluatedSolution.toString());
+        setMessage("Undefined");
         setMessageColor("hsl(0, 50%, 60%)");
       }
     } catch (e) {
@@ -243,14 +283,22 @@ const Level = ({ route, navigation }) => {
       }
     });
     try {
-      const evaluatedSolution = eval(equationList.join("").toString());
-      setMessage(evaluatedSolution.toString());
-      if (evaluatedSolution === solution && full) {
-        setShowModal(true);
-        setMessageColor("hsl(150, 50%, 50%)");
-      } else if (evaluatedSolution === solution) {
-        setMessageColor("hsl(150, 50%, 50%)");
+      console.log("evaluate");
+      const passes = validate(equationList);
+      console.log(passes);
+      if (passes) {
+        const evaluatedSolution = eval(equationList.join("").toString());
+        setMessage(evaluatedSolution.toString());
+        if (evaluatedSolution === solution && full) {
+          setShowModal(true);
+          setMessageColor("hsl(150, 50%, 50%)");
+        } else if (evaluatedSolution === solution) {
+          setMessageColor("hsl(150, 50%, 50%)");
+        } else {
+          setMessageColor("hsl(0, 50%, 60%)");
+        }
       } else {
+        setMessage("Undefined");
         setMessageColor("hsl(0, 50%, 60%)");
       }
     } catch {
@@ -484,6 +532,7 @@ const styles = StyleSheet.create({
   },
   hover: {
     borderColor: "hsl(150, 50%, 60%)",
+    borderWidth: 2,
   },
   payloadNone: {
     backgroundColor: "hsl(180, 20%, 80%)",

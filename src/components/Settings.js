@@ -26,7 +26,9 @@ const Settings = ({ setShowSettings }) => {
       <View style={[styles.settings, { minWidth: width - 60 }]}>
         <Text style={styles.settingsTitle}>Settings:</Text>
         <View style={styles.switchContainer}>
-          <Text style={{ fontFamily: "Futura", fontSize: 18 }}>Dark Mode</Text>
+          <Text style={{ fontFamily: "JosefinSansLight", fontSize: 18 }}>
+            Dark Mode
+          </Text>
           <Switch
             trackColor={{ true: "hsl(150, 50%, 50%)" }}
             thumbColor={dark ? "hsl(150, 90%, 80%)" : "#f4f3f4"}
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
   settings: {
     position: "relative",
     flex: 1,
-    backgroundColor: "hsl(180, 20%, 70%)",
+    backgroundColor: "hsl(180, 10%, 80%)",
     marginVertical: 40,
     marginHorizontal: 30,
     padding: 20,
@@ -79,8 +81,7 @@ const styles = StyleSheet.create({
   },
   settingsTitle: {
     fontSize: 20,
-    fontWeight: "bold",
-    fontFamily: "Futura",
+    fontFamily: "JosefinSans",
   },
   switchContainer: {
     flexDirection: "row",

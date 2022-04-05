@@ -153,11 +153,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
     margin: 20,
     transform: [{ translateY: 10 }],
-    fontFamily: "Futura",
+    fontFamily: "JosefinSans",
   },
   subTitle: {
     fontSize: 18,
-    fontFamily: "Futura",
+    fontFamily: "JosefinSansLight",
   },
 });
 

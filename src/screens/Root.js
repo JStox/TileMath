@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  Platform,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Help from "../components/Help";
@@ -68,7 +69,12 @@ const Root = ({ navigation }) => {
             colors={difficultyColorMap.easy}
             style={small ? styles.smallSelect : styles.select}
           >
-            <Text style={small ? styles.smallLevelText : styles.levelText}>
+            <Text
+              style={[
+                small ? styles.smallLevelText : styles.levelText,
+                Platform.OS === "ios" && { transform: [{ translateY: 3 }] },
+              ]}
+            >
               Easy
             </Text>
           </LinearGradient>
@@ -82,7 +88,12 @@ const Root = ({ navigation }) => {
             colors={difficultyColorMap.medium}
             style={small ? styles.smallSelect : styles.select}
           >
-            <Text style={small ? styles.smallLevelText : styles.levelText}>
+            <Text
+              style={[
+                small ? styles.smallLevelText : styles.levelText,
+                Platform.OS === "ios" && { transform: [{ translateY: 3 }] },
+              ]}
+            >
               Medium
             </Text>
           </LinearGradient>
@@ -96,7 +107,12 @@ const Root = ({ navigation }) => {
             colors={difficultyColorMap.hard}
             style={small ? styles.smallSelect : styles.select}
           >
-            <Text style={small ? styles.smallLevelText : styles.levelText}>
+            <Text
+              style={[
+                small ? styles.smallLevelText : styles.levelText,
+                Platform.OS === "ios" && { transform: [{ translateY: 3 }] },
+              ]}
+            >
               Hard
             </Text>
           </LinearGradient>
@@ -110,7 +126,12 @@ const Root = ({ navigation }) => {
             colors={difficultyColorMap.insane}
             style={small ? styles.smallSelect : styles.select}
           >
-            <Text style={small ? styles.smallLevelText : styles.levelText}>
+            <Text
+              style={[
+                small ? styles.smallLevelText : styles.levelText,
+                Platform.OS === "ios" && { transform: [{ translateY: 3 }] },
+              ]}
+            >
               Insane
             </Text>
           </LinearGradient>
@@ -158,14 +179,12 @@ const styles = StyleSheet.create({
   levelText: {
     color: "hsl(180, 00%, 90%)",
     fontSize: 20,
-    fontWeight: "bold",
-    fontFamily: "Futura",
+    fontFamily: "JosefinSans",
   },
   smallLevelText: {
     color: "hsl(180, 00%, 90%)",
     fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Futura",
+    fontFamily: "JosefinSans",
   },
 });
 

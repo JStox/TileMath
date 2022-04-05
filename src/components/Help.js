@@ -19,7 +19,7 @@ const Help = ({ setShowHelp }) => {
           showsVerticalScrollIndicator={false}
         >
           <Text style={styles.helpTitle}>Instructions:</Text>
-          <Text style={{ fontFamily: "Futura", fontSize: 16 }}>
+          <Text style={styles.helpSubSection}>
             Drag the tiles with numbers and operations to the open droppable
             spaces. A number or operation that starts in a non-draggable space
             cannot have a tile dropped on top of it.
@@ -29,37 +29,21 @@ const Help = ({ setShowHelp }) => {
           </Text>
           <View style={styles.helpTileView}>
             <HelpTile value="*" />
-            <Text
-              style={{ marginLeft: 10, fontFamily: "Futura", fontSize: 16 }}
-            >
-              Multiplication
-            </Text>
+            <Text style={styles.helpSubSection}>Multiplication</Text>
           </View>
           <View style={styles.helpTileView}>
             <HelpTile value="/" />
-            <Text
-              style={{ marginLeft: 10, fontFamily: "Futura", fontSize: 16 }}
-            >
-              Division
-            </Text>
+            <Text style={styles.helpSubSection}>Division</Text>
           </View>
           <View style={styles.helpTileView}>
             <HelpTile value="+" />
-            <Text
-              style={{ marginLeft: 10, fontFamily: "Futura", fontSize: 16 }}
-            >
-              Addition
-            </Text>
+            <Text style={styles.helpSubSection}>Addition</Text>
           </View>
           <View style={styles.helpTileView}>
             <HelpTile value="-" />
-            <Text
-              style={{ marginLeft: 10, fontSize: 16, fontFamily: "Futura" }}
-            >
-              Subtraction
-            </Text>
+            <Text style={styles.helpSubSection}>Subtraction</Text>
           </View>
-          <Text style={{ marginLeft: 10, fontFamily: "Futura", fontSize: 16 }}>
+          <Text style={styles.helpSubSection}>
             Note: Multiplication and Division will execute left to right before
             any Addition or Subtraction.
           </Text>
@@ -74,12 +58,12 @@ const Help = ({ setShowHelp }) => {
               style={{ margin: 10 }}
             />
             <Text
-              style={{
-                fontSize: 16,
-                marginHorizontal: 10,
-                fontFamily: "Futura",
-                flexShrink: 1,
-              }}
+              style={[
+                styles.helpSubSection,
+                {
+                  flexShrink: 1,
+                },
+              ]}
             >
               Reset the game to the original starting position.
             </Text>
@@ -92,12 +76,12 @@ const Help = ({ setShowHelp }) => {
               style={{ margin: 10 }}
             />
             <Text
-              style={{
-                fontSize: 16,
-                marginHorizontal: 10,
-                fontFamily: "Futura",
-                flexShrink: 1,
-              }}
+              style={[
+                styles.helpSubSection,
+                {
+                  flexShrink: 1,
+                },
+              ]}
             >
               Shuffle the tiles that are not in the expression.
             </Text>
@@ -110,12 +94,12 @@ const Help = ({ setShowHelp }) => {
               style={{ margin: 10 }}
             />
             <Text
-              style={{
-                fontSize: 16,
-                marginHorizontal: 10,
-                flexShrink: 1,
-                fontFamily: "Futura",
-              }}
+              style={[
+                styles.helpSubSection,
+                {
+                  flexShrink: 1,
+                },
+              ]}
             >
               Check the current result of the tiles in the expression.
             </Text>
@@ -124,9 +108,15 @@ const Help = ({ setShowHelp }) => {
             Helpful Hints:
           </Text>
           <Text
-            style={{ fontSize: 16, marginBottom: 10, fontFamily: "Futura" }}
+            style={[
+              styles.helpSubSection,
+              {
+                flexShrink: 1,
+                marginBottom: 5,
+              },
+            ]}
           >
-            - Putting two numbers next to each other will combine them together.
+            Putting two numbers next to each other will combine them together.
           </Text>
           <View
             style={{
@@ -140,17 +130,25 @@ const Help = ({ setShowHelp }) => {
             <HelpTile value={1} />
             <Text style={{ fontSize: 24, marginLeft: 10 }}>= 11</Text>
           </View>
-          <Text style={{ fontFamily: "Futura", fontSize: 16 }}>
-            - The only operation that can start the expression to solve the
-            puzzle is the minus. This is because the minus tile can be used to
-            create a negative number.
+          <Text
+            style={[
+              styles.helpSubSection,
+              {
+                flexShrink: 1,
+                marginTop: 0,
+              },
+            ]}
+          >
+            The only operation that can start the expression to solve the puzzle
+            is the minus. This is because the minus tile can be used to create a
+            negative number.
           </Text>
           <View
             style={{
               alignItems: "center",
               flexDirection: "row",
               justifyContent: "center",
-              marginBottom: 10,
+              marginTop: 5,
             }}
           >
             <HelpTile value={"-"} />
@@ -169,7 +167,7 @@ const Help = ({ setShowHelp }) => {
                 size={30}
               />
             </Text>
-            <Text style={{ fontFamily: "Futura", fontSize: 16 }}>
+            <Text style={[styles.helpSubSection, { marginBottom: 5 }]}>
               Use keys to get hints for puzzles. Using a key will the player up
               to four free tiles. Using keys will never solve a puzzle for you
               or remove any playable tiles, however it will offer a window into
@@ -188,9 +186,7 @@ const Help = ({ setShowHelp }) => {
               <HelpTile value={""} blank={true} />
               <Text style={{ fontSize: 24, marginLeft: 10 }}>= 12</Text>
             </View>
-            <Text
-              style={{ fontFamily: "Futura", fontSize: 16, marginBottom: 3 }}
-            >
+            <Text style={[styles.helpSubSection, { marginBottom: 5 }]}>
               Using a key on the above puzzle may turn it into
             </Text>
             <View
@@ -206,9 +202,7 @@ const Help = ({ setShowHelp }) => {
               <HelpTile value={""} blank={true} />
               <Text style={{ fontSize: 24, marginLeft: 10 }}>= 12</Text>
             </View>
-            <Text
-              style={{ fontFamily: "Futura", fontSize: 16, marginBottom: 10 }}
-            >
+            <Text style={[styles.helpSubSection, { marginBottom: 10 }]}>
               making it easier to solve. The player will start off with 3 keys,
               with more available as in-app purchases.
             </Text>
@@ -259,13 +253,18 @@ const styles = StyleSheet.create({
   },
   helpTitle: {
     fontSize: 20,
-    fontWeight: "bold",
-    fontFamily: "Futura",
+    fontFamily: "JosefinSans",
   },
   helpTileView: {
     flexDirection: "row",
     marginBottom: 3,
     alignItems: "center",
+  },
+  helpSubSection: {
+    fontFamily: "JosefinSansLight",
+    fontSize: 16,
+    marginLeft: 10,
+    marginTop: 5,
   },
 });
 

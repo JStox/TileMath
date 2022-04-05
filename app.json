@@ -2,13 +2,13 @@
   "expo": {
     "name": "TileMath",
     "slug": "TileMath",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/appstore.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/SplashLogo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#222222"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,7 +17,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.cjstox.TileMath",
-      "buildNumber": "5"
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {

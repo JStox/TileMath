@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Icon } from "react-native-elements";
 import { Dimensions } from "react-native";
@@ -70,9 +76,11 @@ const LevelPage = ({
                 type="font-awesome-5"
                 name="lock"
                 color="hsl(210, 20%, 90%)"
-                iconStyle={{
-                  transform: [{ translateY: 2 }, { translateX: 1 }],
-                }}
+                iconStyle={
+                  Platform.OS === "ios" && {
+                    transform: [{ translateY: 2 }, { translateX: 1 }],
+                  }
+                }
               />
             ) : (
               item + startNumber

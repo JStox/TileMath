@@ -182,8 +182,7 @@ const styles = StyleSheet.create({
   levelText: {
     color: "hsl(180, 20%, 100%)",
     fontSize: 24,
-    fontWeight: "bold",
-    fontFamily: "Futura",
+    fontFamily: "JosefinSans",
   },
   disabled: {
     opacity: 0.5,
